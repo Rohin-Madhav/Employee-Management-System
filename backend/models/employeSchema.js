@@ -10,7 +10,7 @@ const employeSchema = new mongoose.Schema({
     required: true,
     unique: true,
   },
-  Department: {
+  department: {
     type: String,
     required: true,
   },
@@ -19,6 +19,7 @@ const employeSchema = new mongoose.Schema({
     required: true,
   },
   status: {
+    type:String,
     enum: ["active", "inactive"],
     default: "active",
   },

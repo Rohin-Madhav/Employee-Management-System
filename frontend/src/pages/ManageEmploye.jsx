@@ -11,7 +11,6 @@ const ManageEmploye = () => {
     email: "",
     department: "",
     salary: "",
-    status: "",
   });
   const [isEditForm, setIsEditForm] = useState(null);
   const navigate = useNavigate();
@@ -37,7 +36,6 @@ const ManageEmploye = () => {
       name: emp.name,
       department: emp.department,
       salary: emp.salary,
-      status: emp.status,
     });
   };
 
@@ -52,6 +50,31 @@ const ManageEmploye = () => {
       setIsEditForm(null);
     } catch (error) {
       console.error("Update error:", error);
+    }
+  };
+
+  const handleDelete = async (employeeId) => {
+    const employeeToDelete = employe.find((emp) => emp._id === employeeId);
+    if (
+      !window.confirm(
+        `Are you sure you want to deactivate employee ${employe.name}?`
+      )
+    ) {
+      return;
+    }
+    try {
+      const res = await api.delete(`/${employeeId}`);
+      console.log(res.data);
+      if (res.status === 200) {
+        alert(`${employeeToDelete.name} has been deactivated.`);
+        setEmploye((prevEmployes) =>
+          prevEmployes.filter((emp) => emp._id !== employeeId)
+        );
+      } else {
+        throw new Error("Failed to soft delete employee");
+      }
+    } catch (error) {
+      console.error("Error during deactivation:", error);
     }
   };
 
@@ -103,16 +126,6 @@ const ManageEmploye = () => {
                       />
                     </td>
                     <td>
-                      <select
-                        name="status"
-                        value={editFormData.status}
-                        onChange={handleChange}
-                      >
-                        <option value="active">Active</option>
-                        <option value="inactive">Inactive</option>
-                      </select>
-                    </td>
-                    <td>
                       <button onClick={() => handleSave(e._id)}>Save</button>
                       <button onClick={() => setIsEditForm(null)}>
                         Cancel
@@ -131,7 +144,9 @@ const ManageEmploye = () => {
                         View
                       </button>
                       <button onClick={() => handleEdit(e)}>Edit</button>
-                      {/* <button onClick={() => handleDelete(e._id)}>Delete</button> */}
+                      <button onClick={() => handleDelete(e._id)}>
+                        Deactivate
+                      </button>
                     </td>
                   </>
                 )}

@@ -13,7 +13,14 @@ const ManageEmploye = () => {
     salary: "",
   });
   const [isEditForm, setIsEditForm] = useState(null);
+  const [employeForm, setEmployeForm] = useState({
+    name: "",
+    email: "",
+    department: "",
+    salary: "",
+  });
   const navigate = useNavigate();
+
   useEffect(() => {
     const fetchEmploye = async () => {
       try {
@@ -45,7 +52,7 @@ const ManageEmploye = () => {
 
   const handleSave = async (id) => {
     try {
-      const res = await api.put(`/${id}`, editFormData);
+      const res = await api.put(`/update/${id}`, editFormData);
       console.log(res.data);
       setIsEditForm(null);
     } catch (error) {
@@ -63,7 +70,7 @@ const ManageEmploye = () => {
       return;
     }
     try {
-      const res = await api.delete(`/${employeeId}`);
+      const res = await api.delete(`/delete/${employeeId}`);
       console.log(res.data);
       if (res.status === 200) {
         alert(`${employeeToDelete.name} has been deactivated.`);
@@ -75,6 +82,26 @@ const ManageEmploye = () => {
       }
     } catch (error) {
       console.error("Error during deactivation:", error);
+    }
+  };
+
+  const handleChange2 = (e) => {
+    const { name, value } = e.target;
+    setEmployeForm((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const res = await api.post("/create", employeForm);
+      console.log(res.data);
+
+      alert(`Successfully added new employee: ${employeForm.name}`);
+    } catch (error) {
+      console.error(error.message);
     }
   };
 
@@ -154,6 +181,35 @@ const ManageEmploye = () => {
             ))}
           </tbody>
         </table>
+      </div>
+      <div>
+        <form onSubmit={handleSubmit}>
+          <input
+            type="text"
+            name="name"
+            value={employeForm.name}
+            onChange={handleChange2}
+          />
+          <input
+            type="text"
+            name="email"
+            value={employeForm.email}
+            onChange={handleChange2}
+          />
+          <input
+            type="text"
+            name="department"
+            value={employeForm.department}
+            onChange={handleChange2}
+          />
+          <input
+            type="text"
+            name="salary"
+            value={employeForm.salary}
+            onChange={handleChange2}
+          />
+          <button type="submit">Submit</button>
+        </form>
       </div>
     </div>
   );

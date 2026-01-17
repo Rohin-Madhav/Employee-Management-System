@@ -3,7 +3,7 @@ import { Copyright, Instagram, Facebook, Twitter } from "lucide-react";
 
 const Footer = () => {
   return (
-     <footer className="bg-gray-800 fixed bottom-0 left-0 right-0 w-full text-white py-8">
+     <footer className="bg-gray-800 static w-full text-white py-8">
       <div className="max-w-7xl mx-auto px-4 ">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="flex items-center gap-2">

@@ -145,7 +145,7 @@ const Home = () => {
         </div>
       </section>
 
-      <div className="h-32"></div>
+      
     </div>
   );
 };

@@ -4,7 +4,6 @@ import api from "../service/Api";
 import { useNavigate, useParams } from "react-router-dom";
 
 const ManageEmploye = () => {
-  const { id } = useParams();
   const [employe, setEmploye] = useState([]);
   const [editFormData, setEditFormData] = useState({
     name: "",
@@ -31,7 +30,7 @@ const ManageEmploye = () => {
       }
     };
     fetchEmploye();
-  }, [id]);
+  }, []);
 
   const handleViewClick = (id) => {
     navigate(`/profile/${id}`);

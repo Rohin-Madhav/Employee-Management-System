@@ -24,7 +24,7 @@ const EmployeProfile = () => {
           {employeProfile.name}'s Profile
         </h1>
       </div>
-      <div className="bg-white p-6 rounded-lg shadow-md">
+      <div className="bg-teal-300 p-6 rounded-lg shadow-md">
         <h2 className="text-xl font-semibold text-gray-800 mb-4">
           Employee Details
         </h2>

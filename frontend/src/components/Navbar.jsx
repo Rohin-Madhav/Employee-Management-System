@@ -14,13 +14,13 @@ const Navbar = () => {
           <div className="flex items-center gap-6">
             <Link 
               to="/" 
-              className="text-white hover:text-gray-200 font-medium"
+              className="text-white hover:text-gray-300 font-medium"
             >
               Home
             </Link>
             <Link 
               to="/manage" 
-              className="text-white hover:text-gray-200 font-medium"
+              className="text-white hover:text-gray-300 font-medium"
             >
               Manage Employees
             </Link>

@@ -9,6 +9,7 @@ exports.createEmploye = async (req, res) => {
       department: department,
       salary: salary,
       status: status,
+      userId: req.user.id,
     });
     const savedEmploye = await newEmploye.save();
     res.status(201).json({
@@ -27,7 +28,8 @@ exports.createEmploye = async (req, res) => {
 
 exports.getActiveEmployes = async (req, res) => {
   try {
-    const employees = await Employe.find({ status: "active" });
+    const employees = await Employe.find({ status: "active",userId:req.user.id});
+
     res.status(200).json({
       message: "Active employes",
       count: employees.length,

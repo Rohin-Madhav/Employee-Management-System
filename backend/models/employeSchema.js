@@ -5,6 +5,11 @@ const employeSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  userId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
   email: {
     type: String,
     required: true,
@@ -19,7 +24,7 @@ const employeSchema = new mongoose.Schema({
     required: true,
   },
   status: {
-    type:String,
+    type: String,
     enum: ["active", "inactive"],
     default: "active",
   },

@@ -23,7 +23,7 @@ const ManageEmploye = () => {
   useEffect(() => {
     const fetchEmploye = async () => {
       try {
-        const res = await api.get("/active");
+        const res = await api.get("/employe/active");
         setEmploye(res.data.employes);
       } catch (error) {
         console.log(error.message);
@@ -132,7 +132,7 @@ const ManageEmploye = () => {
       {/* Table Section */}
       <div className="bg-white rounded-lg shadow overflow-hidden mb-8">
         <div className="overflow-x-auto">
-          <table className="w-full">
+         {employe && employe.length > 0 ?( <table className="w-full">
             <thead className="bg-gray-100">
               <tr>
                 <th className="px-6 py-3 text-left text-sm font-semibold text-gray-700">
@@ -262,7 +262,9 @@ const ManageEmploye = () => {
                 </tr>
               ))}
             </tbody>
-          </table>
+          </table>):(
+ <p>No employees found.</p>
+         )}
         </div>
       </div>
 

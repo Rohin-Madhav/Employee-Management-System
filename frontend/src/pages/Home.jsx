@@ -3,6 +3,7 @@ import { Users, Target, Award, Briefcase } from "lucide-react";
 import { Link } from "react-router-dom";
 
 const Home = () => {
+  const token = localStorage.getItem("userToken");
   return (
     <div className="min-h-screen bg-gray-50">
       <section className="bg-emerald-600 text-white py-20">
@@ -15,12 +16,21 @@ const Home = () => {
               Streamline your workforce management with our modern, intuitive
               platform
             </p>
-            <Link
-              to={"/manage"}
-              className="bg-white text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100"
-            >
-              Get Started
-            </Link>
+            {token ? (
+              <Link
+                to={"/manage"}
+                className="bg-white text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100"
+              >
+                Get Started
+              </Link>
+            ) : (
+              <Link
+                to={"/login"}
+                className="bg-white text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100"
+              >
+                Get Started
+              </Link>
+            )}
           </div>
         </div>
       </section>
@@ -136,16 +146,23 @@ const Home = () => {
           <p className="text-xl text-emerald-100 mb-8">
             Join hundreds of companies using our platform
           </p>
-          <Link
-            to={"/manage"}
-            className="bg-white text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100"
-          >
-            Start Free Trial
-          </Link>
+          {token ? (
+            <Link
+              to={"/manage"}
+              className="bg-white text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100"
+            >
+              Start Free Trial
+            </Link>
+          ) : (
+            <Link
+              to={"/login"}
+              className="bg-white text-emerald-600 px-8 py-3 rounded-lg font-semibold hover:bg-gray-100"
+            >
+              Start Free Trial
+            </Link>
+          )}
         </div>
       </section>
-
-      
     </div>
   );
 };

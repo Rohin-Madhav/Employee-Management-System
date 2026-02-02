@@ -22,7 +22,7 @@ const Register = () => {
       const response = await api.post("/auth/register", form);
       console.log("Registration successful:", response.data);
       localStorage.setItem("userToken", response.data.token);
-      navigate("/");
+      navigate("/login");
     } catch (err) {
       setError(err.response?.data?.message || "Registration failed");
     }

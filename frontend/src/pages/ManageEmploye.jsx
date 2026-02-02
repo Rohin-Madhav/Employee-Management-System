@@ -52,7 +52,7 @@ const ManageEmploye = () => {
 
   const handleSave = async (id) => {
     try {
-      const res = await api.put(`/update/${id}`, editFormData);
+      const res = await api.put(`/employe/update/${id}`, editFormData);
       console.log(res.data);
 
       if (res.status === 200) {
@@ -82,7 +82,7 @@ const ManageEmploye = () => {
       return;
     }
     try {
-      const res = await api.delete(`/delete/${employeeId}`);
+      const res = await api.delete(`/employe/delete/${employeeId}`);
       console.log(res.data);
       if (res.status === 200) {
         alert(`${employeeToDelete.name} has been deactivated.`);
@@ -108,7 +108,7 @@ const ManageEmploye = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await api.post("/create", employeForm);
+      const res = await api.post("/employe/create", employeForm);
       console.log(res.data);
       const newEmploye = res.data.employe;
 

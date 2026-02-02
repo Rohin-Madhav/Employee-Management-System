@@ -24,6 +24,14 @@ const Navbar = () => {
             >
               Manage Employees
             </Link>
+           <div>
+             <Link 
+              to="/login" 
+              className="text-white hover:text-gray-300 font-medium"
+            >
+              Sign in
+            </Link>
+           </div>
           </div>
         </div>
       </div>

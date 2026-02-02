@@ -8,7 +8,7 @@ const EmployeProfile = () => {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await api.get(`/${id}`);
+        const res = await api.get(`/employe/${id}`);
         setEmployeProfile(res.data.employee);
         console.log(res.data.employee);
       } catch (error) {

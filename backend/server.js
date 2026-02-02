@@ -2,16 +2,21 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const employeRoute = require("./routes/employeRoutes");
-const authRoutes = require("./routes/authRoutes")
+const authRoutes = require("./routes/authRoutes");
 
 const app = express();
 connectDB();
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  }),
+);
 
-app.use("/auth",authRoutes)
+app.use("/auth", authRoutes);
 app.use("/employe", employeRoute);
 
 const PORT = process.env.PORT || 5000;
